@@ -474,6 +474,52 @@ img { max-width: 100%; height: auto; }
   line-height: 1.7;
 }
 
+/* Audience 五要素 table */
+.audience-card-not {
+  background: linear-gradient(180deg, #fdf6e8 0%, var(--bg-card) 100%);
+  border: 1px dashed var(--accent-light);
+}
+.audience-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.audience-table th {
+  background: var(--accent);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+.audience-card-not .audience-table th {
+  background: var(--accent-deep);
+}
+.audience-table td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  vertical-align: top;
+  line-height: 1.7;
+}
+.audience-table td:first-child {
+  width: 30%;
+  background: var(--bg-alt);
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.audience-hint {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--bg-alt);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 /* Tables */
 .version-table, .schedule-table {
   width: 100%;
