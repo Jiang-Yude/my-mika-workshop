@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AI 辦公室決策顧問團評估頁</title>
+  <style>
+    :root {
+      --ink: #2c2520;
+      --muted: #6f6259;
+      --line: #e5d8c9;
+      --paper: #fffaf3;
+      --cream: #f6ecdc;
+      --milk: #fffdf8;
+      --coffee: #7a5841;
+      --green: #3f6f5b;
+      --rose: #b8695f;
+      --gold: #b98b45;
+      --blue: #527284;
+      --shadow: 0 18px 50px rgba(89, 66, 46, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255, 250, 243, .96), rgba(246, 236, 220, .92)),
+        repeating-linear-gradient(90deg, rgba(122, 88, 65, .04) 0 1px, transparent 1px 72px);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 52px 0 30px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--coffee);
+      background: rgba(255, 253, 248, .72);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      max-width: 880px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, .82);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .panel h2,
+    .panel h3,
+    section h2 {
+      margin: 0 0 12px;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .panel p { margin: 0; color: var(--muted); }
+
+    .decision {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .decision div {
+      border-left: 4px solid var(--green);
+      padding: 10px 12px;
+      background: rgba(63, 111, 91, .08);
+      border-radius: 6px;
+      color: #31483d;
+      font-weight: 700;
+    }
+
+    .toc {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      text-decoration: none;
+      background: var(--milk);
+      color: var(--coffee);
+      font-weight: 700;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      max-width: 580px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .advisor-grid,
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card,
+    .advisor,
+    .question {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: var(--milk);
+    }
+
+    .advisor {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .advisor::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: var(--green);
+    }
+
+    .question {
+      background: #fff8ef;
+    }
+
+    .card .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--coffee);
+    }
+
+    .card h3,
+    .advisor h3,
+    .question h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .card p,
+    .advisor p,
+    .question p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .question strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--coffee);
+      font-size: 15px;
+    }
+
+    .flow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .flow div {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, .86);
+      color: var(--muted);
+    }
+
+    .step {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--coffee);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .visual-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--milk);
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .visual-panel.wide {
+      grid-column: 1 / -1;
+    }
+
+    .visual-panel h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.28;
+    }
+
+    .visual-panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .radar-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 330px;
+    }
+
+    .radar {
+      width: min(100%, 440px);
+      height: auto;
+      display: block;
+    }
+
+    .axis-label {
+      fill: var(--coffee);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .score-label {
+      fill: var(--muted);
+      font-size: 12px;
+    }
+
+    .matrix {
+      position: relative;
+      min-height: 360px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)),
+        linear-gradient(0deg, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)),
+        #fffdf8;
+      overflow: hidden;
+    }
+
+    .axis {
+      position: absolute;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .axis.top { top: 10px; left: 50%; transform: translateX(-50%); }
+    .axis.bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+    .axis.left { left: 10px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; }
+    .axis.right { right: 10px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; }
+
+    .dot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      min-height: 30px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--coffee);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 10px 24px rgba(89, 66, 46, .18);
+      white-space: nowrap;
+    }
+
+    .dot.green { background: var(--green); }
+    .dot.rose { background: var(--rose); }
+    .dot.blue { background: var(--blue); }
+    .dot.gold { background: var(--gold); color: #2c2520; }
+
+    .quadrants {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--milk);
+    }
+
+    .quad {
+      min-height: 160px;
+      padding: 16px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, .84);
+    }
+
+    .quad:nth-child(2n) { border-right: 0; }
+    .quad:nth-child(n+3) { border-bottom: 0; }
+
+    .quad h4 {
+      margin: 0 0 8px;
+      color: var(--coffee);
+      font-size: 17px;
+    }
+
+    .quad p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .risk {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--milk);
+      padding: 18px;
+    }
+
+    .risk h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .risk ul,
+    .route ul,
+    .test-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .risk li + li,
+    .route li + li,
+    .test-list li + li {
+      margin-top: 6px;
+    }
+
+    .level {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .high { color: #8b382f; background: rgba(184, 105, 95, .14); }
+    .mid { color: #73511f; background: rgba(185, 139, 69, .18); }
+    .low { color: #315f50; background: rgba(63, 111, 91, .14); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--milk);
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--coffee);
+      background: #f4e7d5;
+      font-size: 14px;
+    }
+
+    td {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .routes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .route {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      background: var(--milk);
+    }
+
+    .route h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .route .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: rgba(82, 114, 132, .12);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .script {
+      display: grid;
+      gap: 12px;
+    }
+
+    .line {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--milk);
+      padding: 16px;
+    }
+
+    .line strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--coffee);
+    }
+
+    .line p { margin: 0; color: var(--muted); }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--milk);
+      padding: 18px;
+    }
+
+    .check h3 {
+      margin: 0 0 10px;
+      color: var(--coffee);
+      font-size: 19px;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid,
+      .cards,
+      .advisor-grid,
+      .question-grid,
+      .visual-grid,
+      .risk-grid,
+      .routes,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-panel.wide { grid-column: auto; }
+      .quadrants { grid-template-columns: 1fr; }
+      .quad,
+      .quad:nth-child(2n),
+      .quad:nth-child(n+3) {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .quad:last-child { border-bottom: 0; }
+
+      header { padding-top: 34px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 8px; }
+      th, td { display: block; width: 100%; }
+      th { border-bottom: 0; }
+      td { border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="wrap">
+      <span class="eyebrow">決策顧問團 · 可轉述版 · 2026-05-05</span>
+      <h1>我是怎麼用 AI 顧問團輔助決策的</h1>
+      <p class="lead">這頁不是單純展示結論，而是展示我的決策方法：先讓不同顧問角色提出質疑，再用靈魂拷問找出風險，最後把合作對象分流到最順的下一步。人名已改成可愛小名，可給外部看。</p>
+
+      <div class="hero-grid">
+        <div class="panel">
+          <h2>一句話結論</h2>
+          <p>AI 顧問團不是幫我做決定，而是幫我把盲點攤開。納瓦爾顧問負責問「這件事有沒有長期槓桿」，商業顧問負責問「誰會付錢」，人性顧問負責問「對方真的聽得懂嗎」。</p>
+          <div class="decision">
+            <div>決策原則：先辨識對象，不急著推產品。</div>
+            <div>納瓦爾視角：只投入能累積品牌、系統、內容、通路的事。</div>
+            <div>落地結論：個人走工作坊，企業主走診斷與顧問，Mika 先當現場工具。</div>
+          </div>
+        </div>
+        <nav class="panel toc" aria-label="頁面導覽">
+          <a href="#method">決策顧問團</a>
+          <a href="#questions">靈魂拷問</a>
+          <a href="#visuals">視覺分析圖</a>
+          <a href="#roles">對象識別</a>
+          <a href="#risks">主要風險</a>
+          <a href="#routes">兩條推進路線</a>
+          <a href="#scripts">對外說法</a>
+          <a href="#next">下一步檢核</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="method">
+        <div class="section-head">
+          <div>
+            <h2>決策顧問團</h2>
+            <p>我會把一個想法丟給不同角色，讓每個角色只負責一種判斷。這樣不會被單一情緒或單一機會牽著走。</p>
+          </div>
+        </div>
+
+        <div class="advisor-grid">
+          <article class="advisor">
+            <span class="badge">納瓦爾顧問</span>
+            <h3>看長期槓桿</h3>
+            <p>這件事會不會累積成可複製的系統、內容、品牌、通路或產品？如果只是一次性熱鬧，就不能佔用太多主戰場資源。</p>
+          </article>
+          <article class="advisor">
+            <span class="badge">商業顧問</span>
+            <h3>看誰會付錢</h3>
+            <p>對方是想學，還是想要有人幫他做好？個人學員和企業主不能放進同一個漏斗，否則說法會互相打架。</p>
+          </article>
+          <article class="advisor">
+            <span class="badge">人性顧問</span>
+            <h3>看能不能聽懂</h3>
+            <p>外部不會先理解我的完整系統。第一次接觸只要回答一件事：這跟他現在的痛點有什麼關係？</p>
+          </article>
+        </div>
+
+        <div class="panel" style="margin-top: 14px;">
+          <h2>我的決策流程</h2>
+          <div class="flow">
+            <div><span class="step">1</span><span>先把新機會寫成一句話：這是誰、他要什麼、我想推什麼。</span></div>
+            <div><span class="step">2</span><span>請納瓦爾顧問檢查：這件事有沒有長期複利，還是只是短期忙碌。</span></div>
+            <div><span class="step">3</span><span>請商業顧問檢查：這個人適合工作坊、顧問服務、試用，還是暫時觀察。</span></div>
+            <div><span class="step">4</span><span>請人性顧問檢查：外部說法是否太抽象、太像自嗨、或讓對方有壓力。</span></div>
+            <div><span class="step">5</span><span>最後只收斂成一個下一步：約診斷、填問卷、做 demo、邀試用，或先不推。</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="questions">
+        <div class="section-head">
+          <div>
+            <h2>靈魂拷問</h2>
+            <p>每次推廣 AI 辦公室、Mika、工作坊或顧問服務前，我會先用這些問題逼自己不要跳太快。</p>
+          </div>
+        </div>
+
+        <div class="question-grid">
+          <article class="question">
+            <strong>1. 我是在服務對方，還是在推我想推的東西？</strong>
+            <p>如果對方是企業主，卻被我導去學工具，這就是客群錯置。</p>
+          </article>
+          <article class="question">
+            <strong>2. 這個機會會留下什麼複利資產？</strong>
+            <p>至少要留下案例、教材、流程、名單、產品回饋或通路關係其中一種。</p>
+          </article>
+          <article class="question">
+            <strong>3. 對方現在願意付出的成本是什麼？</strong>
+            <p>有人願意付時間學，有人願意付錢買結果。不要搞反。</p>
+          </article>
+          <article class="question">
+            <strong>4. 如果只能給對方一句話，他會記住什麼？</strong>
+            <p>第一次接觸不要講完整宇宙觀。先讓一句話打中當下問題。</p>
+          </article>
+          <article class="question">
+            <strong>5. Mika 現在是在加分，還是在增加門檻？</strong>
+            <p>如果新手還會卡安裝、資料夾、啟動語，Mika 就先當現場工具，不要獨立主賣。</p>
+          </article>
+          <article class="question">
+            <strong>6. 這次合作的下一步是否小到可以執行？</strong>
+            <p>好的下一步應該是 30 分鐘診斷、一份 demo、一張問卷、一場小試點，而不是直接談大願景。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="visuals">
+        <div class="section-head">
+          <div>
+            <h2>視覺分析圖</h2>
+            <p>這三張圖用來快速說明：目前最大的風險在哪、不同對象要怎麼分流、哪些產品可以主推。</p>
+          </div>
+        </div>
+
+        <div class="visual-grid">
+          <article class="visual-panel">
+            <h3>推廣風險雷達圖</h3>
+            <p>分數越高代表越需要先處理。現在最高的是客群錯置與 Mika 過早獨立販售。</p>
+            <div class="radar-wrap">
+              <svg class="radar" viewBox="0 0 420 340" role="img" aria-label="推廣風險雷達圖">
+                <polygon points="210,32 364,121 364,299 210,388 56,299 56,121" fill="none" stroke="#e5d8c9" stroke-width="1" transform="scale(1 .78) translate(0 38)"></polygon>
+                <polygon points="210,72 329,141 329,279 210,348 91,279 91,141" fill="none" stroke="#e5d8c9" stroke-width="1" transform="scale(1 .78) translate(0 38)"></polygon>
+                <polygon points="210,112 294,161 294,259 210,308 126,259 126,161" fill="none" stroke="#e5d8c9" stroke-width="1" transform="scale(1 .78) translate(0 38)"></polygon>
+                <line x1="210" y1="63" x2="210" y2="326" stroke="#e5d8c9"></line>
+                <line x1="96" y1="129" x2="324" y2="261" stroke="#e5d8c9"></line>
+                <line x1="324" y1="129" x2="96" y2="261" stroke="#e5d8c9"></line>
+                <polygon points="210,63 315,134 300,247 210,274 120,247 111,137" fill="rgba(184,105,95,.28)" stroke="#b8695f" stroke-width="3"></polygon>
+                <circle cx="210" cy="63" r="5" fill="#b8695f"></circle>
+                <circle cx="315" cy="134" r="5" fill="#b8695f"></circle>
+                <circle cx="300" cy="247" r="5" fill="#b8695f"></circle>
+                <circle cx="210" cy="274" r="5" fill="#b8695f"></circle>
+                <circle cx="120" cy="247" r="5" fill="#b8695f"></circle>
+                <circle cx="111" cy="137" r="5" fill="#b8695f"></circle>
+                <text x="210" y="24" text-anchor="middle" class="axis-label">客群錯置</text>
+                <text x="378" y="124" text-anchor="start" class="axis-label">Mika 過早賣</text>
+                <text x="372" y="270" text-anchor="start" class="axis-label">名稱混淆</text>
+                <text x="210" y="334" text-anchor="middle" class="axis-label">願景太早</text>
+                <text x="48" y="270" text-anchor="end" class="axis-label">證據不足</text>
+                <text x="42" y="124" text-anchor="end" class="axis-label">戰場分散</text>
+                <text x="214" y="82" class="score-label">5</text>
+                <text x="318" y="154" class="score-label">5</text>
+                <text x="304" y="266" class="score-label">4</text>
+                <text x="214" y="293" class="score-label">3</text>
+                <text x="96" y="266" class="score-label">4</text>
+                <text x="84" y="154" class="score-label">3</text>
+              </svg>
+            </div>
+          </article>
+
+          <article class="visual-panel">
+            <h3>對象分流矩陣圖</h3>
+            <p>橫軸看對方願不願意動手，縱軸看需求是個人學習還是組織結果。</p>
+            <div class="matrix" role="img" aria-label="對象分流矩陣圖">
+              <span class="axis top">要組織結果</span>
+              <span class="axis bottom">要個人學習</span>
+              <span class="axis left">想被代做</span>
+              <span class="axis right">願意動手</span>
+              <span class="dot green" style="left: 28%; top: 24%;">糖糖</span>
+              <span class="dot blue" style="left: 73%; top: 30%;">小薇</span>
+              <span class="dot gold" style="left: 72%; top: 72%;">小艾</span>
+              <span class="dot rose" style="left: 78%; top: 82%;">工作坊學員</span>
+              <span class="dot" style="left: 30%; top: 76%;">先觀察</span>
+            </div>
+          </article>
+
+          <article class="visual-panel wide">
+            <h3>四象限決策圖</h3>
+            <p>這張圖用來判斷目前該主推、該打磨、該做案例，還是該暫時收斂。</p>
+            <div class="quadrants">
+              <div class="quad">
+                <h4>高需求 × 高成熟：主推</h4>
+                <p>顧問診斷、亂資料變報告、組織 know-how 留存。適合糖糖這類通路介紹企業主。</p>
+              </div>
+              <div class="quad">
+                <h4>高需求 × 低成熟：先陪跑</h4>
+                <p>Mika 文件小管家。外部有興趣，但 onboarding 還要打磨，先放進工作坊與試用回饋。</p>
+              </div>
+              <div class="quad">
+                <h4>低需求 × 高成熟：做案例</h4>
+                <p>多框架分析、會議記錄整理、課程示範。先包成故事，作為信任素材。</p>
+              </div>
+              <div class="quad">
+                <h4>低需求 × 低成熟：暫時收斂</h4>
+                <p>數位分身小聚、完整 AI 辦公室宇宙觀。先不要放在第一次對外溝通。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="roles">
+        <div class="section-head">
+          <div>
+            <h2>對象識別</h2>
+            <p>經過顧問團提問後，每個人會被放到不同路線。小名版用來降低外部閱讀壓力，但每個角色背後代表的是不同推廣場景。</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <span class="tag" style="background: var(--rose);">糖糖</span>
+            <h3>通路與企業主入口</h3>
+            <p>糖糖認識的是老闆、企業主、商會與組織型客戶。這群人多半要結果，不想自己學流程。適合推顧問服務與免費診斷，不適合主推入門工作坊。</p>
+          </article>
+          <article class="card">
+            <span class="tag" style="background: var(--green);">小艾</span>
+            <h3>試用與案例回饋</h3>
+            <p>小艾適合當早期試用者與故事型案例來源。重點是觀察新手卡點、驗證說法是否聽得懂，不急著成交產品。</p>
+          </article>
+          <article class="card">
+            <span class="tag" style="background: var(--gold);">小薇</span>
+            <h3>垂直主題場顧問</h3>
+            <p>小薇適合 ESG 或特定領域場景的共同設計。她不是大眾入門課主軸，而是垂直場的內容校準與應用案例。</p>
+          </article>
+          <article class="card">
+            <span class="tag" style="background: var(--blue);">青年平台</span>
+            <h3>AI 助教 MVP 壓測</h3>
+            <p>青年平台適合測試「不要學工具，讓工具學你」這個心法是否能被小白聽懂。這裡的成功不是賣產品，而是驗證教學路徑。</p>
+          </article>
+          <article class="card">
+            <span class="tag" style="background: var(--coffee);">影響力社群</span>
+            <h3>組織知識庫案例</h3>
+            <p>影響力社群適合展示資料累積後能做多框架分析、報告書、共識追蹤。這是中期顧問服務案例，不是入門產品案例。</p>
+          </article>
+          <article class="card">
+            <span class="tag" style="background: #8b6a9b;">星星</span>
+            <h3>真實人類壓測者</h3>
+            <p>星星適合抓 AI 顧問抓不到的語感與世界觀問題，例如貓咪設定、門檻說法、聽起來是否像在批評使用者。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head">
+          <div>
+            <h2>主要風險</h2>
+            <p>這些不是否定方向，而是提醒推廣時不要把正確產品賣給錯的人。</p>
+          </div>
+        </div>
+
+        <div class="risk-grid">
+          <article class="risk">
+            <span class="level high">高風險</span>
+            <h3>客群錯置</h3>
+            <ul>
+              <li>老闆想要結果，工作坊卻要求他自己學過程。</li>
+              <li>糖糖通路若推工作坊，成交阻力會變大。</li>
+              <li>組織型客戶應該先做免費診斷或小試點。</li>
+            </ul>
+          </article>
+
+          <article class="risk">
+            <span class="level high">高風險</span>
+            <h3>產品過早獨立販售</h3>
+            <ul>
+              <li>Mika 目前仍需要現場引導與新手 onboarding。</li>
+              <li>直接下載會遇到安裝、資料夾層級、啟動語等卡點。</li>
+              <li>現階段更適合當工作坊附贈品與回饋收集工具。</li>
+            </ul>
+          </article>
+
+          <article class="risk">
+            <span class="level mid">中風險</span>
+            <h3>名稱與產品線混淆</h3>
+            <ul>
+              <li>AI 辦公室、Mika、咪卡、文件小管家、AI 助教容易被聽成不同東西。</li>
+              <li>對外先固定一句：「咪卡是你的 AI 文件小管家」。</li>
+              <li>更深的 AI 辦公室與技能包架構，等進門後再說。</li>
+            </ul>
+          </article>
+
+          <article class="risk">
+            <span class="level mid">中風險</span>
+            <h3>願景講太早</h3>
+            <ul>
+              <li>數位分身小聚、線上商會、生態系都放在後段。</li>
+              <li>第一次接觸只回答一件事：這跟我現在的工作有什麼關係？</li>
+              <li>願景可以加信任，但不能取代明確下一步。</li>
+            </ul>
+          </article>
+
+          <article class="risk">
+            <span class="level mid">中風險</span>
+            <h3>價值證據不足</h3>
+            <ul>
+              <li>概念很多，但外部最需要的是看得見的前後差異。</li>
+              <li>優先包裝三個案例：亂 Excel 變報告、外部試用成功啟動、多框架影響力分析。</li>
+              <li>每個案例都要能用 30 秒講完。</li>
+            </ul>
+          </article>
+
+          <article class="risk">
+            <span class="level low">低風險但要管</span>
+            <h3>情緒成本與戰場分散</h3>
+            <ul>
+              <li>短期只守住工作坊與顧問服務兩條線。</li>
+              <li>Mika v2 不急著承諾完整桌面寵物。</li>
+              <li>每次合作會議只收一個下一步。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="routes">
+        <div class="section-head">
+          <div>
+            <h2>兩條推進路線</h2>
+            <p>不要混賣。先判斷對方想「自己學」還是想「有人幫他做好」。</p>
+          </div>
+        </div>
+
+        <div class="routes">
+          <article class="route">
+            <span class="badge">A 路線：個人想動手學</span>
+            <h3>工作坊路線</h3>
+            <ul>
+              <li>適合：自由工作者、創作者、老師、顧問、願意動手整理資料的人。</li>
+              <li>入口：免費講座、問卷、Threads、自媒體。</li>
+              <li>主賣：不再 AI 焦慮，現場建立自己的 AI 工作流。</li>
+              <li>交付：一日實體工作坊 + Mika 附贈 + 陪跑。</li>
+              <li>成功指標：學員回家後能跑第一個自己的任務。</li>
+            </ul>
+          </article>
+
+          <article class="route">
+            <span class="badge">B 路線：老闆與組織要結果</span>
+            <h3>顧問服務路線</h3>
+            <ul>
+              <li>適合：企業主、傳產老闆、商會成員、組織管理者。</li>
+              <li>入口：糖糖推薦、朋友介紹、社群演講、免費診斷。</li>
+              <li>主賣：把員工帶不走的 know-how 留在公司。</li>
+              <li>交付：評估、建置、移交，不要求老闆自己學完整流程。</li>
+              <li>成功指標：做出一個可展示的小成果，再談完整建置。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>識別矩陣</h2>
+            <p>每次有人介紹新對象時，先用這張表判斷，不急著推同一個方案。</p>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>對方狀態</th>
+              <th>最適合入口</th>
+              <th>不要推什麼</th>
+              <th>下一步</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>自己想學，願意整理資料與動手操作</td>
+              <td>一日工作坊</td>
+              <td>高價顧問案</td>
+              <td>填問卷或加入優先名單</td>
+            </tr>
+            <tr>
+              <td>老闆很忙，只問能不能幫公司做出結果</td>
+              <td>免費診斷或小試點</td>
+              <td>入門工作坊</td>
+              <td>約 30 分鐘需求盤點</td>
+            </tr>
+            <tr>
+              <td>有資料但很亂，例如 Excel、PPT、會議記錄散落</td>
+              <td>小型 demo</td>
+              <td>抽象願景簡報</td>
+              <td>挑一份資料做前後差異展示</td>
+            </tr>
+            <tr>
+              <td>對 AI 有興趣但怕學不會</td>
+              <td>免費講座 + 工作坊</td>
+              <td>直接下載 Mika</td>
+              <td>先讓他看「現場陪裝」的安心感</td>
+            </tr>
+            <tr>
+              <td>已有社群、商會、組織場域</td>
+              <td>主題短講 + 顧問線索收集</td>
+              <td>把所有人都導去同一場工作坊</td>
+              <td>會後分流：想學的人進工作坊，要結果的人約診斷</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="scripts">
+        <div class="section-head">
+          <div>
+            <h2>對外說法</h2>
+            <p>這幾句可以直接貼到簡報、訊息或口頭介紹中。</p>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="line">
+            <strong>給個人學員</strong>
+            <p>你不用一直追新的 AI 工具。這堂工作坊會帶你把自己的資料、習慣、工作流程整理成 AI 看得懂的方式，讓 AI 開始學你。</p>
+          </div>
+          <div class="line">
+            <strong>給企業主</strong>
+            <p>我不是來教你用 AI。我是幫你把公司裡那些員工帶不走、老師傅腦袋裡、老業務手上的 know-how，變成公司留下來的 AI 系統。</p>
+          </div>
+          <div class="line">
+            <strong>給糖糖這類通路夥伴</strong>
+            <p>你的人脈如果是老闆，不用推他們來上入門課。你只要問他：公司裡有沒有什麼東西只存在某幾個人腦袋裡？如果有，就可以約我做一次診斷。</p>
+          </div>
+          <div class="line">
+            <strong>給小艾這類試用夥伴</strong>
+            <p>你不用幫我賣。你只要真實使用，告訴我哪裡卡、哪裡聽不懂、哪一句話讓你突然理解。這些回饋會直接變成下一版 Mika 的引導設計。</p>
+          </div>
+          <div class="line">
+            <strong>給第一次聽到 Mika 的人</strong>
+            <p>咪卡是一隻 AI 文件小管家。它不是另一個聊天機器人，而是幫你整理資料、記住流程、陪你建立自己 AI 工作流的入口。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="next">
+        <div class="section-head">
+          <div>
+            <h2>下一步檢核</h2>
+            <p>5 月先守住這幾件事，等真實回饋回來，再決定是否推進 Mika v2 與中期顧問服務。</p>
+          </div>
+        </div>
+
+        <div class="checklist">
+          <article class="check">
+            <h3>工作坊</h3>
+            <ul class="test-list">
+              <li>問卷至少收 50 份。</li>
+              <li>確認第一場地點與時間。</li>
+              <li>把「現場陪裝」放在主賣點。</li>
+            </ul>
+          </article>
+          <article class="check">
+            <h3>Mika</h3>
+            <ul class="test-list">
+              <li>不獨立主賣。</li>
+              <li>記錄每次新手卡點。</li>
+              <li>把卡點整理成 v2 onboarding 清單。</li>
+            </ul>
+          </article>
+          <article class="check">
+            <h3>顧問服務</h3>
+            <ul class="test-list">
+              <li>糖糖通路只推診斷與顧問。</li>
+              <li>準備一個小 demo：亂資料變報告。</li>
+              <li>補出起跳價與交付邊界。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <p>本頁為 AI 辦公室 / Mika / 工作坊 / 顧問服務的推廣識別頁。小名僅作為對外可讀版本，實際合作仍以個別會議共識與合約為準。</p>
+    </footer>
+  </div>
+</body>
+</html>
